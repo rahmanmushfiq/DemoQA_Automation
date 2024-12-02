@@ -1,10 +1,10 @@
 /// <reference types = "cypress"/>
 
-import { ElementPage } from "../Pages/ElementPage";
+import { ElementPageTextBox } from "../Pages/ElementPage_TextBox";
 
-const elementPage = new ElementPage()
+const elementPageTextBox = new ElementPageTextBox();
 
-var elementPageUrl = 'https://demoqa.com/elements';
+var textBoxPageUrl = 'text-box';
 
 var fullName = "Mushfiqur Rahman";
 var emailAddress = "mushfiqur.rahman@test.com";
@@ -13,10 +13,9 @@ var parmanentAddress = "505, Senpara Parbota, Mirpur, Dhaka - 1216";
 
 describe("It checks the element page functionality", function () {
     it('Go to DemoQA Element URL and Validates the textbox funtionality', function () {
-        elementPage.gotoElementsPage(elementPageUrl)
-        elementPage.openTextboxMenu()
-        elementPage.fillUpTheForm(fullName, emailAddress, currentAddress, parmanentAddress)
-        elementPage.validateFormValue(fullName, emailAddress, currentAddress, parmanentAddress)
+        elementPageTextBox.gotoTextBoxPage(textBoxPageUrl)
+        elementPageTextBox.fillUpTheForm(fullName, emailAddress, currentAddress, parmanentAddress)
+        elementPageTextBox.validateFormValue(fullName, emailAddress, currentAddress, parmanentAddress)
     })
 })
 

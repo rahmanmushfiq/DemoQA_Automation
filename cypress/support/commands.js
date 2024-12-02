@@ -23,3 +23,8 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+/*Cypress.Commands.add('GotoBaseUrl', function () {
+    cy.visit('https://demoqa.com')
+    cy.url().then(url => cy.log("URL in Commands Page: ", url))
+})*/

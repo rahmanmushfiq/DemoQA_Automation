@@ -1,4 +1,4 @@
-export class ElementPage {
+export class ElementPageTextBox {
 
     elementsMenuPath = ":nth-child(1) > .group-header > .header-wrapper";
     textboxMenuPath = ":nth-child(1) > .element-list > .menu-list > #item-0";
@@ -10,13 +10,8 @@ export class ElementPage {
     submitButton = "#submit";
 
 
-    gotoElementsPage(elementPageUrl) {
-        cy.visit(elementPageUrl)
-    }
-
-    openTextboxMenu() {
-        cy.get(this.elementsMenuPath).click()
-        cy.get(this.textboxMenuPath).click()
+    gotoTextBoxPage(textBoxPageUrl) {
+        cy.url().then(url => cy.visit(url + textBoxPageUrl))
     }
 
     fillUpTheForm(fullName, emailAddress, currentAddress, parmanentAddress) {

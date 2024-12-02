@@ -23,3 +23,8 @@ import './commands'
 Cypress.on('uncaught:exception', (err, runnable) => {
     return false;
 })
+
+beforeEach('Go to DemoQA Site', function () {
+    cy.visit('https://demoqa.com')
+    cy.url().then(url => cy.log("URL in E2E Page: ", url))
+})
