@@ -1,0 +1,6 @@
+{
+    "radioButtonPageUrl": "radio-button",
+    "expectedHeader": "Radio Button",
+    "expectedRadioButtonHeader": "Do you like the site?",
+    "expectedTextAfterSelection": "You have selected Yes"
+}

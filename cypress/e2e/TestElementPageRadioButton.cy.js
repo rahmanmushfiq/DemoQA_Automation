@@ -2,13 +2,14 @@ import { ElementPageRadioButton } from "../Pages/ElementPage_RadioButton";
 
 const elementPageRadioButton = new ElementPageRadioButton();
 
-var radioButtonPageUrl = 'radio-button';
-
 describe("It checks the element page functionality", function () {
     it('Go to DemoQA Element URL and Validates the radio button funtionality', function () {
-        elementPageRadioButton.gotoRadioButtonPage(radioButtonPageUrl)
-        elementPageRadioButton.radioButtonPageValidation()
-        elementPageRadioButton.checkRadioButton()
-        elementPageRadioButton.validateRadioButtonSelection()
+
+        cy.fixture('radioButtonPageData.json').then((data) => {
+            elementPageRadioButton.gotoRadioButtonPage(data.radioButtonPageUrl)
+            elementPageRadioButton.radioButtonPageValidation(data.expectedHeader, data.expectedRadioButtonHeader)
+            elementPageRadioButton.checkRadioButton()
+            elementPageRadioButton.validateRadioButtonSelection(data.expectedTextAfterSelection)
+        })
     })
 })
