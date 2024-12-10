@@ -7,10 +7,6 @@ export class ElementPageTextBox {
     submitButton = "#submit";
 
 
-    gotoTextBoxPage(textBoxPageUrl) {
-        cy.url().then(url => cy.visit(url + textBoxPageUrl))
-    }
-
     fillUpTheForm(fullName, emailAddress, currentAddress, parmanentAddress) {
         cy.get(this.fullNameField).type(fullName)
         cy.get(this.emailField).type(emailAddress)
