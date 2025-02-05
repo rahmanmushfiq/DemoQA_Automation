@@ -1,0 +1,7 @@
+{
+    "buttonPageUrl": "buttons",
+    "expectedHeader": "Buttons",
+    "expectedDoubleClickMessage": "You have done a double click",
+    "expectedRightClickMessage": "You have done a right click",
+    "expectedDynamicClickMessage": "You have done a dynamic click"
+}
