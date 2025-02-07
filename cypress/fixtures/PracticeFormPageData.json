@@ -1,0 +1,16 @@
+{
+    "praciceFormURL": "automation-practice-form",
+    "expectedHeader": "Practice Form",
+    "expectedFormHeader": "Student Registration Form",
+    "firstName": "Mushfiqur",
+    "lastName": "Rahman",
+    "email": "mushfiq@test.com",
+    "gender": "Male",
+    "mobile": "01666505322",
+    "dateOfBirth": "",
+    "subjects": "Computer Science",
+    "hobbies": "Sports, Music",
+    "currentAddress": "76/A, Banani, Road #11",
+    "state": "NCR",
+    "city": "Noida"
+}
