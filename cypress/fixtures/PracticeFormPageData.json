@@ -13,5 +13,6 @@
     "hobbies": "Sports, Music",
     "currentAddress": "76/A, Banani, Road #11",
     "state": "NCR",
-    "city": "Delhi"
+    "city": "Delhi",
+    "fileName": "TestImage.jpg"
 }

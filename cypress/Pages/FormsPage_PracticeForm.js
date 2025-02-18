@@ -17,6 +17,7 @@ export class FormsPagePracticeForm {
     stateSelector = "#state";
     citySelector = "#city";
     submitButtonSelector = "#submit";
+    filePath = "cypress\\fixtures\\Asset\\TestImage.jpg";
 
     validateFormPage(expectedHeader, expectedFormHeader) {
         cy.get(this.sectionHeaderSelector).should('contain.text', expectedHeader);
@@ -39,10 +40,10 @@ export class FormsPagePracticeForm {
         cy.get(this.submitButtonSelector).click();
 
         //File upload
-        //cy.get(this.fileSelector).attachFile("C:\Users\mushfiqur.rahman\Documents\DemoQA_Automation\cypress\downloads\CypressLogo.png", { subjectType: 'input' })
+        cy.get(this.fileSelector).selectFile(this.filePath, { force: true });
     }
 
-    validateFormData(firstName, lastName, email, gender, mobile, EnglishSubject, ChemistrySubject, dateOfBirth, currentAddress, state, city) {
+    validateFormData(firstName, lastName, email, gender, mobile, EnglishSubject, ChemistrySubject, dateOfBirth, currentAddress, state, city, fileName) {
 
         let name = firstName + " " + lastName;
         cy.get('table').find('tr td').eq(0).should('contain.text', 'Student Name');
@@ -67,7 +68,7 @@ export class FormsPagePracticeForm {
         cy.get('table').find('tr td').eq(13).should('contain.text', 'Sports, Reading, Music');
 
         cy.get('table').find('tr td').eq(14).should('contain.text', 'Picture');
-        cy.get('table').find('tr td').eq(15).should('contain.text', '');
+        cy.get('table').find('tr td').eq(15).should('contain.text', fileName);
 
         cy.get('table').find('tr td').eq(16).should('contain.text', 'Address');
         cy.get('table').find('tr td').eq(17).should('contain.text', currentAddress);
