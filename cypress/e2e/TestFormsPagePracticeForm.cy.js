@@ -9,8 +9,8 @@ describe("It checks the forms page functionality", function () {
         cy.fixture('PracticeFormPageData.json').then((data) => {
             utilities.navigateTo(data.praciceFormURL);
             formsPagePracticeForm.validateFormPage(data.expectedHeader, data.expectedFormHeader);
-            formsPagePracticeForm.fillUpForm(data.firstName, data.lastName, data.email, data.mobile, data.subject, data.currentAddress);
-            formsPagePracticeForm.validateFormData(data.firstName, data.lastName, data.email, data.gender, data.mobile, data.currentAddress);
+            formsPagePracticeForm.fillUpForm(data.firstName, data.lastName, data.email, data.mobile, data.EnglishSubject, data.ChemistrySubject, data.dateOfBirth, data.currentAddress, data.state, data.city);
+            formsPagePracticeForm.validateFormData(data.firstName, data.lastName, data.email, data.gender, data.mobile, data.EnglishSubject, data.ChemistrySubject, data.dateOfBirth, data.currentAddress, data.state, data.city);
         })
     })
 })
