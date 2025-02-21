@@ -21,7 +21,7 @@ export class FormsPagePracticeForm {
 
     validateFormPage(expectedHeader, expectedFormHeader) {
         cy.get(this.sectionHeaderSelector).should('contain.text', expectedHeader);
-        cy.get(this.formHeaderSection).should('contain.text', expectedFormHeader).should('have.css', 'font-weight', '500');
+        cy.get(this.formHeaderSection).should('contain.text', expectedFormHeader).should('have.css', 'font-weight', '700');
     }
 
     fillUpForm(firstName, lastName, email, mobile, EnglishSubject, ChemistrySubject, dateOfBirth, currentAddress, state, city) {
