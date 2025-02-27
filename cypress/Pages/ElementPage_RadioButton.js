@@ -13,10 +13,10 @@ export class ElementPageRadioButton {
     }
 
     checkRadioButton() {
-        cy.get(this.radioButtonTypeSelector).first().check({ force: true })
+        cy.get(this.radioButtonTypeSelector).first().check({ force: true });
     }
 
     validateRadioButtonSelection(expectedTextAfterSelection) {
-        cy.get(this.selectedRadioButtonTextSelector).should('contain.text', expectedTextAfterSelection)
+        cy.get(this.selectedRadioButtonTextSelector).should('contain.text', expectedTextAfterSelection);
     }
 }

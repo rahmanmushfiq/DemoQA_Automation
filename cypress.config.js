@@ -13,5 +13,6 @@ module.exports = defineConfig({
       this.screenshotOnRunFailure = true;
       require('cypress-mochawesome-reporter/plugin')(on);
     },
+    baseUrl: "https://demoqa.com/",
   },
 });

@@ -16,8 +16,8 @@ before(() => {
 
 describe("It checks the element page functionality", function () {
     it('Go to DemoQA Element URL and Validates the textbox funtionality', function () {
-        utilities.navigateTo(userData.textBoxPageUrl)
-        elementPageTextBox.fillUpTheForm(userData.fullName, userData.emailAddress, userData.currentAddress, userData.parmanentAddress)
-        elementPageTextBox.validateFormValue(userData.fullName, userData.emailAddress, userData.currentAddress, userData.parmanentAddress)
+        utilities.navigateTo(userData.textBoxPageUrl);
+        elementPageTextBox.fillUpTheForm(userData.fullName, userData.emailAddress, userData.currentAddress, userData.parmanentAddress);
+        elementPageTextBox.validateFormValue(userData.fullName, userData.emailAddress, userData.currentAddress, userData.parmanentAddress);
     })
 })
