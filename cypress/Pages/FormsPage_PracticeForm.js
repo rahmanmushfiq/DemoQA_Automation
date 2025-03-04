@@ -46,7 +46,38 @@ export class FormsPagePracticeForm {
     validateFormData(firstName, lastName, email, gender, mobile, EnglishSubject, ChemistrySubject, dateOfBirth, currentAddress, state, city, fileName) {
 
         let name = firstName + " " + lastName;
-        cy.get('table').find('tr td').eq(0).should('contain.text', 'Student Name');
+
+        // This below validation is done using for loop
+        const validationData = [
+            "Student Name",
+            name,
+            "Student Email",
+            email,
+            "Gender",
+            gender,
+            "Mobile",
+            mobile,
+            "Date of Birth",
+            "29 May,1995",
+            "Subjects",
+            "English, Chemistry",
+            "Hobbies",
+            "Sports, Reading, Music",
+            "Picture",
+            fileName,
+            "Address",
+            currentAddress,
+            "State and City",
+            "NCR Delhi"
+        ];
+
+        for (let i = 0; i == validationData.length; i++) {
+            cy.get('table').find('tr td').eq(i).should('contain.text', validationData[i]);
+            i++;
+        }
+
+        // This below validation is done without using for loop
+        /*cy.get('table').find('tr td').eq(0).should('contain.text', 'Student Name');
         cy.get('table').find('tr td').eq(1).should('contain.text', name);
 
         cy.get('table').find('tr td').eq(2).should('contain.text', 'Student Email');
@@ -74,36 +105,7 @@ export class FormsPagePracticeForm {
         cy.get('table').find('tr td').eq(17).should('contain.text', currentAddress);
 
         cy.get('table').find('tr td').eq(18).should('contain.text', 'State and City');
-        cy.get('table').find('tr td').eq(19).should('contain.text', state + " " + city);
+        cy.get('table').find('tr td').eq(19).should('contain.text', state + " " + city);*/
 
-
-        // This below validation is done using for loop but commented out due to memory consumption and browser crashing
-        /*const validationData = [
-            "Student Name",
-            name,
-            "Student Email",
-            email,
-            "Gender",
-            gender,
-            "Mobile",
-            mobile,
-            "Date of Birth",
-            "29 May,1995",
-            "Subjects",
-            "English, Chemistry",
-            "Hobbies",
-            "Sports, Reading, Music",
-            "Picture",
-            "",
-            "Address",
-            currentAddress,
-            "State and City",
-            "NCR Delhi"
-        ];
-
-        for (let i = 0; i = validationData.length; i++) {
-            cy.get('table').find('tr td').eq(i).should('contain.text', validationData[i]);
-            i++;
-        }*/
     }
 } 
