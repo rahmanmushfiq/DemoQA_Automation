@@ -70,7 +70,7 @@ export class FormsPagePracticeForm {
             "Date of Birth",
             dateOfBirth,
             "Subjects",
-            EnglishSubject + ", " + ChemistrySubject,
+            `${EnglishSubject}, ${ChemistrySubject}`,
             "Hobbies",
             hobbies,
             "Picture",
@@ -78,7 +78,7 @@ export class FormsPagePracticeForm {
             "Address",
             currentAddress,
             "State and City",
-            state + " " + city
+            `${state} ${city}`
         ];
 
         for (let i = 0; i < validationData.length; i += 2) {
@@ -116,6 +116,6 @@ export class FormsPagePracticeForm {
         cy.get('tbody > :nth-child(9) > :nth-child(2)').should('have.text', currentAddress);
 
         cy.get('tbody > :nth-child(10) > :nth-child(1)').should('have.text', 'State and City');
-        cy.get('tbody > :nth-child(10) > :nth-child(2)').should('have.text', state + " " + city);*/
+        cy.get('tbody > :nth-child(10) > :nth-child(2)').should('have.text', `${state} ${city}`);*/
     }
 } 
