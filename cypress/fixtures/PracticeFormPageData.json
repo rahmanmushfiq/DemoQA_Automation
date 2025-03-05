@@ -10,9 +10,10 @@
   "dateOfBirth": "29 May,1995",
   "EnglishSubject": "English",
   "ChemistrySubject": "Chemistry",
-  "hobbies": "Sports, Music",
+  "hobbies": "Sports, Reading, Music",
   "currentAddress": "76/A, Banani, Road #11",
   "state": "NCR",
   "city": "Delhi",
-  "fileName": "TestImage.jpg"
+  "filePathAndName": "cypress\\fixtures\\Asset\\TestImage.jpg",
+  "formSubmissionMessage": "Thanks for submitting the form"
 }

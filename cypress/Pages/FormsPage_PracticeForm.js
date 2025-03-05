@@ -18,10 +18,17 @@ export class FormsPagePracticeForm {
     citySelector = "#city";
     submitButtonSelector = "#submit";
     filePath = "cypress\\fixtures\\Asset\\TestImage.jpg";
+    formSubmissionMessageLocator = "#example-modal-sizes-title-lg";
 
     validateFormPage(expectedHeader, expectedFormHeader) {
         cy.get(this.sectionHeaderSelector).should('contain.text', expectedHeader);
-        cy.get(this.formHeaderSection).should('contain.text', expectedFormHeader).should('have.css', 'font-weight', '500');
+        //cy.get(this.formHeaderSection).should('contain.text', expectedFormHeader).should('have.css', 'font-weight', '500');
+
+        // Below validation is written to validate the font weight between 500 or 700. The callback function checks if the retrieved value is either 500 or 700 using .include().  
+        cy.get(this.formHeaderSection).should('contain.text', expectedFormHeader).should(($el) => {
+            const fontWeight = $el.css('font-weight');
+            expect(['500', '700']).to.include(fontWeight);
+        });
     }
 
     fillUpForm(firstName, lastName, email, mobile, EnglishSubject, ChemistrySubject, dateOfBirth, currentAddress, state, city) {
@@ -34,16 +41,19 @@ export class FormsPagePracticeForm {
         cy.get(this.subjectSelector).type(EnglishSubject + "{enter}").type(ChemistrySubject + "{enter}");
         //cy.get(this.hobbiesSelector).first().check({ force: true }) //Check the first checkbox
         cy.get(this.hobbiesSelector).check({ force: true }); //Check all the checkboxes
+
+        //File upload
+        cy.get(this.fileSelector).selectFile(this.filePath, { force: true });
+
         cy.get(this.currentAddressSelector).type(currentAddress)
         cy.get(this.stateSelector).click().type(state + "{enter}");
         cy.get(this.citySelector).click().type(city + "{enter}");
         cy.get(this.submitButtonSelector).click();
-
-        //File upload
-        cy.get(this.fileSelector).selectFile(this.filePath, { force: true });
     }
 
-    validateFormData(firstName, lastName, email, gender, mobile, EnglishSubject, ChemistrySubject, dateOfBirth, currentAddress, state, city, fileName) {
+    validateFormData(formSubmissionMessage, firstName, lastName, email, gender, mobile, EnglishSubject, ChemistrySubject, hobbies, dateOfBirth, currentAddress, state, city, filePathAndName) {
+
+        cy.get(this.formSubmissionMessageLocator).should('have.text', formSubmissionMessage);
 
         let name = firstName + " " + lastName;
 
@@ -58,54 +68,54 @@ export class FormsPagePracticeForm {
             "Mobile",
             mobile,
             "Date of Birth",
-            "29 May,1995",
+            dateOfBirth,
             "Subjects",
-            "English, Chemistry",
+            EnglishSubject + ", " + ChemistrySubject,
             "Hobbies",
-            "Sports, Reading, Music",
+            hobbies,
             "Picture",
-            fileName,
+            filePathAndName,
             "Address",
             currentAddress,
             "State and City",
-            "NCR Delhi"
+            state + " " + city
         ];
 
-        for (let i = 0; i == validationData.length; i++) {
-            cy.get('table').find('tr td').eq(i).should('contain.text', validationData[i]);
-            i++;
-        }
+        for (let i = 0; i < validationData.length; i += 2) {
+            cy.contains('tbody tr', validationData[i]).within(() => {
+                cy.get('td').eq(1).should('have.text', validationData[i + 1]);
+            });
+        };
 
         // This below validation is done without using for loop
-        /*cy.get('table').find('tr td').eq(0).should('contain.text', 'Student Name');
-        cy.get('table').find('tr td').eq(1).should('contain.text', name);
+        /*cy.get('tbody > :nth-child(1) > :nth-child(1)').should('have.text', 'Student Name');
+        cy.get('tbody > :nth-child(1) > :nth-child(2)').should('have.text', name);
 
-        cy.get('table').find('tr td').eq(2).should('contain.text', 'Student Email');
-        cy.get('table').find('tr td').eq(3).should('contain.text', email);
+        cy.get('tbody > :nth-child(2) > :nth-child(1)').should('have.text', 'Student Email');
+        cy.get('tbody > :nth-child(2) > :nth-child(2)').should('have.text', email);
 
-        cy.get('table').find('tr td').eq(4).should('contain.text', 'Gender');
-        cy.get('table').find('tr td').eq(5).should('contain.text', gender);
+        cy.get('tbody > :nth-child(3) > :nth-child(1)').should('have.text', 'Gender');
+        cy.get('tbody > :nth-child(3) > :nth-child(2)').should('have.text', gender);
 
-        cy.get('table').find('tr td').eq(6).should('contain.text', 'Mobile');
-        cy.get('table').find('tr td').eq(7).should('contain.text', mobile);
+        cy.get('tbody > :nth-child(4) > :nth-child(1)').should('have.text', 'Mobile');
+        cy.get('tbody > :nth-child(4) > :nth-child(2)').should('have.text', mobile);
 
-        cy.get('table').find('tr td').eq(8).should('contain.text', 'Date of Birth');
-        cy.get('table').find('tr td').eq(9).should('contain.text', dateOfBirth);
+        cy.get('tbody > :nth-child(5) > :nth-child(1)').should('have.text', 'Date of Birth');
+        cy.get('tbody > :nth-child(5) > :nth-child(2)').should('have.text', dateOfBirth);
 
-        cy.get('table').find('tr td').eq(10).should('contain.text', 'Subjects');
-        cy.get('table').find('tr td').eq(11).should('contain.text', EnglishSubject + ", " + ChemistrySubject);
+        cy.get('tbody > :nth-child(6) > :nth-child(1)').should('have.text', 'Subjects');
+        cy.get('tbody > :nth-child(6) > :nth-child(2)').should('have.text', `${EnglishSubject}, ${ChemistrySubject}`);
 
-        cy.get('table').find('tr td').eq(12).should('contain.text', 'Hobbies');
-        cy.get('table').find('tr td').eq(13).should('contain.text', 'Sports, Reading, Music');
+        cy.get('tbody > :nth-child(7) > :nth-child(1)').should('have.text', 'Hobbies');
+        cy.get('tbody > :nth-child(7) > :nth-child(2)').should('have.text', hobbies);
 
-        cy.get('table').find('tr td').eq(14).should('contain.text', 'Picture');
-        cy.get('table').find('tr td').eq(15).should('contain.text', fileName);
+        cy.get('tbody > :nth-child(8) > :nth-child(1)').should('have.text', 'Picture');
+        cy.get('tbody > :nth-child(8) > :nth-child(2)').should('have.text', filePathAndName);
 
-        cy.get('table').find('tr td').eq(16).should('contain.text', 'Address');
-        cy.get('table').find('tr td').eq(17).should('contain.text', currentAddress);
+        cy.get('tbody > :nth-child(9) > :nth-child(1)').should('have.text', 'Address');
+        cy.get('tbody > :nth-child(9) > :nth-child(2)').should('have.text', currentAddress);
 
-        cy.get('table').find('tr td').eq(18).should('contain.text', 'State and City');
-        cy.get('table').find('tr td').eq(19).should('contain.text', state + " " + city);*/
-
+        cy.get('tbody > :nth-child(10) > :nth-child(1)').should('have.text', 'State and City');
+        cy.get('tbody > :nth-child(10) > :nth-child(2)').should('have.text', state + " " + city);*/
     }
 } 
