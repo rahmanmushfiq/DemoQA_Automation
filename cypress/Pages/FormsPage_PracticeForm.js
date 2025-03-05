@@ -31,14 +31,14 @@ export class FormsPagePracticeForm {
         });
     }
 
-    fillUpForm(firstName, lastName, email, mobile, EnglishSubject, ChemistrySubject, dateOfBirth, currentAddress, state, city) {
+    fillUpForm(firstName, lastName, email, mobile, englishSubject, chemistrySubject, dateOfBirth, currentAddress, state, city) {
         cy.get(this.firstNameSelector).type(firstName);
         cy.get(this.lastNameSelector).type(lastName);
         cy.get(this.emailSelector).type(email);
         cy.get(this.genderSelector).first().check({ force: true });
         cy.get(this.mobileSelector).type(mobile)
         cy.get(this.dobSelector).type("{selectAll}").type(dateOfBirth + "{enter}");
-        cy.get(this.subjectSelector).type(EnglishSubject + "{enter}").type(ChemistrySubject + "{enter}");
+        cy.get(this.subjectSelector).type(englishSubject + "{enter}").type(chemistrySubject + "{enter}");
         //cy.get(this.hobbiesSelector).first().check({ force: true }) //Check the first checkbox
         cy.get(this.hobbiesSelector).check({ force: true }); //Check all the checkboxes
 
@@ -51,7 +51,7 @@ export class FormsPagePracticeForm {
         cy.get(this.submitButtonSelector).click();
     }
 
-    validateFormData(formSubmissionMessage, firstName, lastName, email, gender, mobile, EnglishSubject, ChemistrySubject, hobbies, dateOfBirth, currentAddress, state, city, filePathAndName) {
+    validateFormData(formSubmissionMessage, firstName, lastName, email, gender, mobile, englishSubject, chemistrySubject, hobbies, dateOfBirth, currentAddress, state, city, filePathAndName) {
 
         cy.get(this.formSubmissionMessageLocator).should('have.text', formSubmissionMessage);
 
@@ -70,7 +70,7 @@ export class FormsPagePracticeForm {
             "Date of Birth",
             dateOfBirth,
             "Subjects",
-            `${EnglishSubject}, ${ChemistrySubject}`,
+            `${englishSubject}, ${chemistrySubject}`,
             "Hobbies",
             hobbies,
             "Picture",
@@ -104,7 +104,7 @@ export class FormsPagePracticeForm {
         cy.get('tbody > :nth-child(5) > :nth-child(2)').should('have.text', dateOfBirth);
 
         cy.get('tbody > :nth-child(6) > :nth-child(1)').should('have.text', 'Subjects');
-        cy.get('tbody > :nth-child(6) > :nth-child(2)').should('have.text', `${EnglishSubject}, ${ChemistrySubject}`);
+        cy.get('tbody > :nth-child(6) > :nth-child(2)').should('have.text', `${englishSubject}, ${ehemistrySubject}`);
 
         cy.get('tbody > :nth-child(7) > :nth-child(1)').should('have.text', 'Hobbies');
         cy.get('tbody > :nth-child(7) > :nth-child(2)').should('have.text', hobbies);

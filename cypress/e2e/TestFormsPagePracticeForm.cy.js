@@ -18,8 +18,8 @@ describe("It checks the forms page functionality", function () {
 
         formsPagePracticeForm.validateFormPage(userData.expectedHeader, userData.expectedFormHeader);
 
-        formsPagePracticeForm.fillUpForm(userData.firstName, userData.lastName, userData.email, userData.mobile, userData.EnglishSubject, userData.ChemistrySubject, userData.dateOfBirth, userData.currentAddress, userData.state, userData.city);
+        formsPagePracticeForm.fillUpForm(userData.firstName, userData.lastName, userData.email, userData.mobile, userData.englishSubject, userData.chemistrySubject, userData.dateOfBirth, userData.currentAddress, userData.state, userData.city);
 
-        formsPagePracticeForm.validateFormData(userData.formSubmissionMessage, userData.firstName, userData.lastName, userData.email, userData.gender, userData.mobile, userData.EnglishSubject, userData.ChemistrySubject, userData.hobbies, userData.dateOfBirth, userData.currentAddress, userData.state, userData.city, userData.filePathAndName);
+        formsPagePracticeForm.validateFormData(userData.formSubmissionMessage, userData.firstName, userData.lastName, userData.email, userData.gender, userData.mobile, userData.englishSubject, userData.chemistrySubject, userData.hobbies, userData.dateOfBirth, userData.currentAddress, userData.state, userData.city, userData.filePathAndName);
     });
 })
